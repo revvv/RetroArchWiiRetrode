@@ -4,12 +4,13 @@ RetroArch for Wii with Retrode 2 support!
 * The [Retrode 2](http://www.retrode.org) cartridge reader offers USB mass storage access for your SNES cartridges. This works out of the box on the Wii!
 * With my driver you can also use your SNES gamepad on your Wii!
 * Support for 1 player only! (Port 1) (_more to come!_)
-* Tested with exactly one game: Super Mario World
-* Contains one core only: snes9x2010 (_more to come!_)
+* Tested with two games: Super Mario World and Sonic
+* Contains two cores: snes9x2010 and genesis\_plus\_gx (_more to come!_)
 * I also maintain the [Snes9x GX Retrode](https://github.com/revvv/snes9xgx-retrode) fork, which supports 4 players.
 
 #### Download
-* [RetroArchWiiRetrode-0.1.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.1/RetroArchWiiRetrode-0.1.zip)
+* [RetroArchWiiRetrode-0.1.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.1/RetroArchWiiRetrode-0.1.zip) includes Snes9x2010 core.
+* [genesis_plus_gx_libretro_wii-0.1.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.1/genesis_plus_gx_libretro_wii-0.1.zip) optional Genesis core
 
 ### Notes
 * RetroArch will find two Retrode devices. Usually #1 is the SNES mouse (not supported) and #2 is the SNES gamepad in port 1.
