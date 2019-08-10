@@ -23,6 +23,11 @@
 
 #include "../input_defines.h"
 
+static int port_count = 0;
+
+// store device for each port
+static struct hidpad_retrode_data* port_device[4];
+
 struct hidpad_retrode_data
 {
    struct pad_connection* connection;
@@ -49,6 +54,9 @@ static void* hidpad_retrode_init(void *data, uint32_t slot, hid_driver_t *driver
    device->connection   = connection;
    device->slot         = slot;
 
+   port_device[port_count] = device;
+   port_count++;
+
    return device;
 }
 
@@ -58,6 +66,12 @@ static void hidpad_retrode_deinit(void *data)
 
    if (device)
       free(device);
+
+   port_count = 0;
+   port_device[0] = NULL;
+   port_device[1] = NULL;
+   port_device[2] = NULL;
+   port_device[3] = NULL;
 }
 
 static void hidpad_retrode_get_buttons(void *data, input_bits_t *state)
@@ -69,8 +83,6 @@ static void hidpad_retrode_get_buttons(void *data, input_bits_t *state)
 	}
    else
 		BIT256_CLEAR_ALL_PTR(state);
-
-	RARCH_LOG("XXX Retrode hack BTN val=%d / %d\n", state, device->buttons);
 }
 
 static int16_t hidpad_retrode_get_axis(void *data, unsigned axis)
@@ -82,7 +94,6 @@ static int16_t hidpad_retrode_get_axis(void *data, unsigned axis)
       return 0;
 
    val = device->data[2 + axis];
-   //RARCH_LOG("Retrode DPAD val=0x%02X\n", val);
 
    // map Retrode values to a known gamepad (VID=0x0079, PID=0x0011)
    if (val == 0x9C)
@@ -124,7 +135,14 @@ static void hidpad_retrode_packet_handler(void *data, uint8_t *packet, uint16_t 
    if (!device)
       return;
 
-   // Retrode: Add this to only support controller 1 (also required for heldButton state)
+   // packet[1] contains Retrode port number
+   // 1 = left SNES
+   // 2 = right SNES
+   // 3 = left Genesis/MD
+   // 4 = right Genesis/MD
+
+   /*
+   // for port 1 only
    if (packet[1] != 1)
    	   return;
 
@@ -137,6 +155,21 @@ static void hidpad_retrode_packet_handler(void *data, uint8_t *packet, uint16_t 
    for (i = 0; i < 8; i ++)
       if (button_mapping[i] != NO_BTN)
          device->buttons |= (pressed_keys & (1 << i)) ? (1 << button_mapping[i]) : 0;
+   */
+
+   // find instance which handles specific port
+   // (wiiusb_hid_read_cb calls first instance only, so need to delegate)
+   struct hidpad_retrode_data *device1234 = port_device[packet[1] - 1];
+
+   memcpy(device1234->data, packet, size);
+
+   device1234->buttons = 0;
+
+   pressed_keys = device1234->data[4];
+
+   for (i = 0; i < 8; i ++)
+      if (button_mapping[i] != NO_BTN)
+    	  device1234->buttons |= (pressed_keys & (1 << i)) ? (1 << button_mapping[i]) : 0;
 }
 
 static void hidpad_retrode_set_rumble(void *data,
