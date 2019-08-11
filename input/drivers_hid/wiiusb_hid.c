@@ -292,6 +292,11 @@ static bool isRetrodeMouse(usb_devdesc devdesc)
     return false;
 }
 
+static bool isXBOX360(usb_devdesc devdesc)
+{
+    return (devdesc.idVendor == VID_XBOX360 && devdesc.idProduct == PID_XBOX360);
+}
+
 static int wiiusb_hid_add_adapter(void *data, usb_device_entry *dev)
 {
    usb_devdesc desc;
@@ -331,6 +336,14 @@ static int wiiusb_hid_add_adapter(void *data, usb_device_entry *dev)
    }
 
    wiiusb_get_description(dev, adapter, &desc);
+
+   /* XBOX360 has four endpoints, but only 0x81 is of interest */
+   if (isXBOX360(desc) && adapter->endpoint_in != 0x81)
+   {
+       RARCH_LOG("XBOX360 endpoint 0x%02X ignored\n", adapter->endpoint_in);
+       adapter->handle = 0; /* prevent USB_CloseDevice() below */
+       goto error;
+   }
 
    if (adapter->endpoint_in == 0)
    {
@@ -394,6 +407,14 @@ static int wiiusb_hid_add_adapter(void *data, usb_device_entry *dev)
            }
        }
    }
+   else if (isXBOX360(desc))
+   {
+       RARCH_LOG("XBOX360 gamepad endpoint_in=0x%02X, endpoint_out=0x%02X in slot: %d\n", adapter->endpoint_in, adapter->endpoint_out, adapter->slot);
+       FRONTEND_DRIVERS_PLATFORM_GX_XBOX360_HACK_ACTIVE = true; /* turns off dynamic mounting/unmounting of USB devices */
+       USB_SetConfiguration(adapter->device_id, 1);
+       wiiusb_hid_device_add_autodetect(adapter->slot,
+               device_name, wiiusb_hid.ident, desc.idVendor, desc.idProduct);
+   }
    else
        wiiusb_hid_device_add_autodetect(adapter->slot,
              device_name, wiiusb_hid.ident, desc.idVendor, desc.idProduct);
@@ -453,6 +474,20 @@ static void wiiusb_hid_scan_for_devices(wiiusb_hid_t *hid)
 
       if (dev_entries[i].vid > 0 && dev_entries[i].pid > 0)
          wiiusb_hid_add_adapter(hid, &dev_entries[i]);
+   }
+
+   /* scan for XBOX360 */
+   if (USB_GetDeviceList(dev_entries, MAX_USERS, 0xFF, &count) < 0)
+       goto error;
+
+   for (i = 0; i < count; i++)
+   {
+       /* first check the device is not already in our list */
+       if (!wiiusb_hid_new_device(hid, dev_entries[i].device_id))
+           continue;
+
+       if (dev_entries[i].vid == VID_XBOX360 && dev_entries[i].pid == PID_XBOX360)
+           wiiusb_hid_add_adapter(hid, &dev_entries[i]);
    }
 
 error:

@@ -116,6 +116,9 @@ static scond_t *gx_device_cond           = NULL;
 static sthread_t *gx_device_thread       = NULL;
 static volatile bool gx_stop_dev_thread  = false;
 
+bool FRONTEND_DRIVERS_PLATFORM_GX_XBOX360_HACK_ACTIVE = false;
+static bool log_warning_written = false;
+
 static void gx_devthread(void *a)
 {
    unsigned i;
@@ -126,6 +129,16 @@ static void gx_devthread(void *a)
 
       for (i = 0; i < GX_DEVICE_END; i++)
       {
+         /* TODO is it possible just to exclude XBOX360 controller? */
+         if (FRONTEND_DRIVERS_PLATFORM_GX_XBOX360_HACK_ACTIVE && strcmp("usb", gx_devices[i].name) == 0)
+         {
+            if (!log_warning_written)
+            {
+               RARCH_WARN("gx_devthread(): WARNING XBOX360 hack active: dynamic mounting/unmounting of USB devices turned off\n");
+               log_warning_written = true;
+            }
+            continue;
+         }
          if (gx_devices[i].mounted)
          {
             if (!gx_devices[i].interface->isInserted())
