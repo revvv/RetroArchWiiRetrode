@@ -14,10 +14,10 @@ RetroArch for Wii with Retrode 2 support!
 * Logging is enabled.
 
 #### Download offical RetroArch Build
-* Retrode support is now available in official [RetroArch nightly builds](http://buildbot.libretro.com/nightly/nintendo/wii/)
+* My Retrode driver is now available in the official [RetroArch nightly builds](http://buildbot.libretro.com/nightly/nintendo/wii/)
 * Contains **46 cores!**
-* Add the autoconfig file [Retrode.cfg](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/Retrode.cfg) to SD:/apps/retroarch-wii/autoconfig
-* Create directory SD:/retroarch/config
+* Add the autoconfig file [Retrode.cfg](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/Retrode.cfg) to `SD:/apps/retroarch-wii/autoconfig`
+* Create directory `SD:/retroarch/config`
 * Configure input joypad driver to `hid`, then restart.
 * I usually add these values to the default config file `retroarch.cfg`. (Or use the RetroArch menu to configure.)
 
@@ -30,7 +30,7 @@ RetroArch for Wii with Retrode 2 support!
 
 ### Notes
 * RetroArch will find four Retrode devices.
-* If you want to use an addtional USB gamepad, please note: RetroArch Wii only supports certain USB gamepads: VIDs/PIDs are [hardcoded](https://github.com/libretro/RetroArch/blob/master/input/connect/joypad_connection.h) and an autoconfig file has to exist. As described in the official [commit message](https://github.com/libretro/RetroArch/commit/bca4ccb155cdb088a38a3b00e23f9c1714412515).
+* If you want to use an additional USB gamepad, please note: RetroArch Wii only supports certain USB gamepads: VIDs/PIDs are [hardcoded](https://github.com/libretro/RetroArch/blob/master/input/connect/joypad_connection.h) and an autoconfig file has to exist. As described in the official [commit message](https://github.com/libretro/RetroArch/commit/bca4ccb155cdb088a38a3b00e23f9c1714412515).
 * I also noticed that the autoconfig files for the Wii have a slightly different button layout. Just reconfigure if you have copied a file from another platform.
 * Original SNES Mouse is not supported. (I don't have one, but if you give me the [RetrodeTest](https://github.com/revvv/snes9xgx-retrode/releases/download/0.1/RetrodeTest-0.1.zip) output I could add it...)
 
