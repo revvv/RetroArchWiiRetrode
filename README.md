@@ -21,10 +21,12 @@ RetroArch for Wii with Retrode 2 support!
 * Configure input joypad driver to `hid`, then restart.
 * I usually add these values to the default config file `retroarch.cfg`. (Or use the RetroArch menu to configure.)
 
+```
     input_joypad_driver = "hid"
     all_users_control_menu = "true"
     ;; open RetroArch menu with start+select (4) 
     input_menu_toggle_gamepad_combo = "4"
+```
 
 ### Notes
 * RetroArch will find four Retrode devices.
