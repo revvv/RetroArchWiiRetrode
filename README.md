@@ -9,7 +9,7 @@ RetroArch for Wii with Retrode 2 support!
 * I also maintain the [Snes9x GX Retrode](https://github.com/revvv/snes9xgx-retrode) fork.
 
 #### Download
-[RetroArchWiiRetrode-0.2.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.2/RetroArchWiiRetrode-0.2.zip)
+[RetroArchWiiRetrode-0.3.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/RetroArchWiiRetrode-0.3.zip)
 
 ### Notes
 * RetroArch will find four Retrode devices.
