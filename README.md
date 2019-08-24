@@ -14,7 +14,7 @@ _Maybe I should have chosen another project name ;-)_
 **NEW**: I also fixed [caprice32's bad resolution bug](https://github.com/libretro/libretro-cap32/issues/65)
 
 #### Download Retrode/XBOX360 Build
-* [RetroArchWiiRetrode-0.4.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/RetroArchWiiRetrode-0.4.zip)
+* [RetroArchWiiRetrode-0.4.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.4/RetroArchWiiRetrode-0.4.zip)
 * Contains three cores: **snes9x2010**, **genesis_plus_gx** and **caprice32**
 * **WARNING!** Only the XBOX360 wired controller is supported: The wireless controller might crash.
 * **WARNING!** This build does not support USB mass storage devices! This HACK was required to support XBOX360.
