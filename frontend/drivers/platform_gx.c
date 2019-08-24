@@ -126,6 +126,11 @@ static void gx_devthread(void *a)
 
       for (i = 0; i < GX_DEVICE_END; i++)
       {
+         if (strcmp("usb", gx_devices[i].name) == 0) /* TODO XBOX360 hack */
+         {
+            RARCH_WARN("gx_devthread(): WARNING XBOX360 hack active: Ignoring mass storage device class %d: %s\n", i, gx_devices[i].name);
+            continue;
+         }
          if (gx_devices[i].mounted)
          {
             if (!gx_devices[i].interface->isInserted())

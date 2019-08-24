@@ -115,6 +115,7 @@ int32_t pad_connection_pad_init(joypad_connection_t *joyconn,
       { "PSX to PS3 Controller Adapter", 0,     0,  &pad_connection_psxadapter },
       { "Mayflash DolphinBar",           0,     0,  &pad_connection_wii },
       { "Retrode",                       0,     0,  &pad_connection_retrode },
+      { "XBOX360",                       0,     0,  &pad_connection_xbox360 },
       { 0, 0}
    };
    joypad_connection_t *s = NULL;
@@ -149,6 +150,8 @@ int32_t pad_connection_pad_init(joypad_connection_t *joyconn,
    pad_map[10].pid        = 774;
    pad_map[11].vid        = VID_RETRODE;
    pad_map[11].pid        = PID_RETRODE;
+   pad_map[12].vid        = VID_XBOX360;
+   pad_map[12].pid        = PID_XBOX360;
 
    if (s)
    {

@@ -1,19 +1,32 @@
 ### RetroArchWiiRetrode
-RetroArch for Wii with Retrode 2 support!
+RetroArch for Wii with Retrode 2 and XBOX360 controller support!
 
 * The [Retrode 2](http://www.retrode.org) cartridge reader offers USB mass storage access for your SNES and Genesis/MegaDrive cartridges. This works out of the box on the Wii!
 * With my driver you can also use your SNES and Genesis/MegaDrive gamepads on your Wii!
 * Support for 4 players!
-* Tested with various games: Super Mario World, Street Fighter 2, Super Bomberman and Sonic
+* Tested with various games: Super Mario World, Street Fighter 2, Super Bomberman, Sonic and Boulder Dash
 * I also maintain the [Snes9x GX Retrode](https://github.com/revvv/snes9xgx-retrode) fork.
 
-#### Download RetroArchWiiRetrode Build
+**XBOX360 controller** is now supported! (XBOX360 wired version: VID=0x045e, PID=0x028e)
+
+_Maybe I should have chosen another project name ;-)_ 
+
+**NEW**: I also fixed [caprice32's bad resolution bug](https://github.com/libretro/libretro-cap32/issues/65)
+
+#### Download Retrode/XBOX360 Build
+* [RetroArchWiiRetrode-0.4.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/RetroArchWiiRetrode-0.4.zip)
+* Contains three cores: **snes9x2010**, **genesis_plus_gx** and **caprice32**
+* **WARNING!** Only the XBOX360 wired controller is supported: The wireless controller might crash.
+* **WARNING!** This build does not support USB mass storage devices! This HACK was required to support XBOX360.
+* **NOTE:** Plug in your USB controller before you launch RetroArch. Do not unplug while RetroArch is running.
+* **NOTE:** This build _crashes_ sometimes after closing contents.
+
+#### Download Retrode Build
 * [RetroArchWiiRetrode-0.3.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/RetroArchWiiRetrode-0.3.zip)
 * Contains two cores: **snes9x2010** and **genesis_plus_gx**
 * Works out of the box.
-* Logging is enabled.
 
-#### Download offical RetroArch Build
+#### Download offical RetroArch Build with Retrode 2 support (XBOX360 support is not included!)
 * My Retrode driver is now available in the official [RetroArch nightly builds](http://buildbot.libretro.com/nightly/nintendo/wii/)
 * Contains **46 cores!**
 * Add the autoconfig file [Retrode.cfg](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/Retrode.cfg) to `SD:/apps/retroarch-wii/autoconfig`
