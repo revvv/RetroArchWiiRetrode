@@ -409,7 +409,8 @@ static int wiiusb_hid_add_adapter(void *data, usb_device_entry *dev)
    }
    else if (isXBOX360(desc))
    {
-       RARCH_LOG("XBOX360 gamepad endpoint_in=0x%02X, endpoint_out=%d in slot: %d\n", adapter->endpoint_in, adapter->endpoint_out, adapter->slot);
+       RARCH_LOG("XBOX360 gamepad endpoint_in=0x%02X, endpoint_out=0x%02X in slot: %d\n", adapter->endpoint_in, adapter->endpoint_out, adapter->slot);
+       FRONTEND_DRIVERS_PLATFORM_GX_XBOX360_HACK_ACTIVE = true; /* turns off dynamic mounting/unmounting of USB devices */
        USB_SetConfiguration(adapter->device_id, 1);
        wiiusb_hid_device_add_autodetect(adapter->slot,
                device_name, wiiusb_hid.ident, desc.idVendor, desc.idProduct);

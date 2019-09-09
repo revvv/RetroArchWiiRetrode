@@ -13,19 +13,13 @@
 * The LED shows which device slot is selected: 1-4. _On some controllers the LED always flashes._
 
 ### HOWTO ###
-* Connect your Retrode 2 or XBOX360 controller, then start RetroArch.
-* Do not unplug your controller once it is detected!
+* Connect your Retrode 2, the XBOX360 controller and your USB drives, then start RetroArch.
+* Do not unplug your USB controllers or USB drives after startup!
+* My build is based on latest RetroArch sources, so expect some crashes. Usually a restart helps.
 
 #### Download Retrode/XBOX360 Build
-* [RetroArchWiiRetrode-0.4.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.4/RetroArchWiiRetrode-0.4.zip)
+* [RetroArchWiiRetrode-0.5.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.5/RetroArchWiiRetrode-0.5.zip)
 * Contains three cores: **snes9x2010**, **genesis_plus_gx** and **caprice32**
-* **WARNING!** This build does not support USB mass storage devices! This HACK was required to support XBOX360.
-* **NOTE:** This build _crashes_ sometimes after closing contents.
-
-#### Download Retrode Build
-* [RetroArchWiiRetrode-0.3.zip](https://github.com/revvv/RetroArchWiiRetrode/releases/download/0.3/RetroArchWiiRetrode-0.3.zip)
-* Contains two cores: **snes9x2010** and **genesis_plus_gx**
-* Works out of the box.
 
 #### Download offical RetroArch Build with Retrode 2 support
 * My Retrode driver is now available in the official [RetroArch nightly builds](http://buildbot.libretro.com/nightly/nintendo/wii/)
