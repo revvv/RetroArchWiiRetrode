@@ -51,7 +51,7 @@ static void* hidpad_xbox360_init(void *data, uint32_t slot, hid_driver_t *driver
    device->slot         = slot;
    device->driver       = driver;
 
-   // turn on LED
+   /* turn on LED */
    if (slot < 4)
    {
        uint8_t ATTRIBUTE_ALIGN(32) buf[] = { WIIUSB_SC_INTMSG, 0x01, 0x03, 0x06 + slot };
